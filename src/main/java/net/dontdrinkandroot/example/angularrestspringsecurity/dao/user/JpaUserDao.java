@@ -12,17 +12,14 @@ import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Root;
 import java.util.List;
 
-public class JpaUserDao extends JpaDao<User, Long> implements UserDao
-{
-    public JpaUserDao()
-    {
+public class JpaUserDao extends JpaDao<User, Long> implements UserDao {
+    public JpaUserDao() {
         super(User.class);
     }
 
     @Override
     @Transactional(readOnly = true)
-    public User loadUserByUsername(String username) throws UsernameNotFoundException
-    {
+    public User loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = this.findByName(username);
         if (null == user) {
             throw new UsernameNotFoundException("The user with name " + username + " was not found");
@@ -33,8 +30,7 @@ public class JpaUserDao extends JpaDao<User, Long> implements UserDao
 
     @Override
     @Transactional(readOnly = true)
-    public User findByName(String name)
-    {
+    public User findByName(String name) {
         final CriteriaBuilder builder = this.getEntityManager().getCriteriaBuilder();
         final CriteriaQuery<User> criteriaQuery = builder.createQuery(this.entityClass);
 

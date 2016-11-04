@@ -21,8 +21,7 @@ import java.util.List;
 
 @Component
 @Path("/blogposts")
-public class BlogPostResource
-{
+public class BlogPostResource {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
@@ -33,8 +32,7 @@ public class BlogPostResource
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public String list() throws IOException
-    {
+    public String list() throws IOException {
         this.logger.info("list()");
 
         ObjectWriter viewWriter;
@@ -51,8 +49,7 @@ public class BlogPostResource
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("{id}")
-    public BlogPost read(@PathParam("id") Long id)
-    {
+    public BlogPost read(@PathParam("id") Long id) {
         this.logger.info("read(id)");
 
         BlogPost blogPost = this.blogPostDao.find(id);
@@ -65,8 +62,7 @@ public class BlogPostResource
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public BlogPost create(BlogPost blogPost)
-    {
+    public BlogPost create(BlogPost blogPost) {
         this.logger.info("create(): " + blogPost);
 
         return this.blogPostDao.save(blogPost);
@@ -76,8 +72,7 @@ public class BlogPostResource
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("{id}")
-    public BlogPost update(@PathParam("id") Long id, BlogPost blogPost)
-    {
+    public BlogPost update(@PathParam("id") Long id, BlogPost blogPost) {
         this.logger.info("update(): " + blogPost);
 
         return this.blogPostDao.save(blogPost);
@@ -86,15 +81,13 @@ public class BlogPostResource
     @DELETE
     @Produces(MediaType.APPLICATION_JSON)
     @Path("{id}")
-    public void delete(@PathParam("id") Long id)
-    {
+    public void delete(@PathParam("id") Long id) {
         this.logger.info("delete(id)");
 
         this.blogPostDao.delete(id);
     }
 
-    private boolean isAdmin()
-    {
+    private boolean isAdmin() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Object principal = authentication.getPrincipal();
         if ((principal instanceof String) && ((String) principal).equals("anonymousUser")) {

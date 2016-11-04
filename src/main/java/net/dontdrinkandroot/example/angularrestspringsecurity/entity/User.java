@@ -9,8 +9,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @javax.persistence.Entity
-public class User implements Entity, UserDetails
-{
+public class User implements Entity, UserDetails {
     @Id
     @GeneratedValue
     private Long id;
@@ -24,96 +23,79 @@ public class User implements Entity, UserDetails
     @ElementCollection(fetch = FetchType.EAGER)
     private Set<Role> roles = new HashSet<Role>();
 
-    protected User()
-    {
+    protected User() {
         /* Reflection instantiation */
     }
 
-    public User(String name, String passwordHash)
-    {
+    public User(String name, String passwordHash) {
         this.name = name;
         this.password = passwordHash;
     }
 
-    public Long getId()
-    {
+    public Long getId() {
         return this.id;
     }
 
-    public void setId(Long id)
-    {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public String getName()
-    {
+    public String getName() {
         return this.name;
     }
 
-    public void setName(String name)
-    {
+    public void setName(String name) {
         this.name = name;
     }
 
-    public Set<Role> getRoles()
-    {
+    public Set<Role> getRoles() {
         return this.roles;
     }
 
-    public void setRoles(Set<Role> roles)
-    {
+    public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
 
-    public void addRole(Role role)
-    {
+    public void addRole(Role role) {
         this.roles.add(role);
     }
 
     @Override
-    public String getPassword()
-    {
+    public String getPassword() {
         return this.password;
     }
 
-    public void setPassword(String password)
-    {
+    public void setPassword(String password) {
         this.password = password;
     }
 
     @Override
-    public Collection<? extends GrantedAuthority> getAuthorities()
-    {
+    public Collection<? extends GrantedAuthority> getAuthorities() {
         return this.getRoles();
     }
 
     @Override
-    public String getUsername()
-    {
+    public String getUsername() {
         return this.name;
     }
 
     @Override
-    public boolean isAccountNonExpired()
-    {
+    public boolean isAccountNonExpired() {
         return true;
     }
 
     @Override
-    public boolean isAccountNonLocked()
-    {
+    public boolean isAccountNonLocked() {
         return true;
     }
 
     @Override
-    public boolean isCredentialsNonExpired()
-    {
+    public boolean isCredentialsNonExpired() {
         return true;
     }
 
     @Override
-    public boolean isEnabled()
-    {
+    public boolean isEnabled() {
         return true;
     }
 }

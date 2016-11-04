@@ -12,17 +12,14 @@ import javax.persistence.criteria.Root;
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
  */
-public class JpaAccessTokenDao extends JpaDao<AccessToken, Long> implements AccessTokenDao
-{
-    public JpaAccessTokenDao()
-    {
+public class JpaAccessTokenDao extends JpaDao<AccessToken, Long> implements AccessTokenDao {
+    public JpaAccessTokenDao() {
         super(AccessToken.class);
     }
 
     @Override
     @Transactional(readOnly = true, noRollbackFor = NoResultException.class)
-    public AccessToken findByToken(String accessTokenString)
-    {
+    public AccessToken findByToken(String accessTokenString) {
         CriteriaBuilder builder = this.getEntityManager().getCriteriaBuilder();
         CriteriaQuery<AccessToken> query = builder.createQuery(this.entityClass);
         Root<AccessToken> root = query.from(this.entityClass);

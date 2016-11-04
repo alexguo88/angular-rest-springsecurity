@@ -7,8 +7,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
  */
-public interface UserService extends UserDetailsService
-{
+public interface UserService extends UserDetailsService {
     User findUserByAccessToken(String accessToken);
 
     AccessToken createAccessToken(User user);

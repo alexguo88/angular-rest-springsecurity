@@ -10,32 +10,29 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import java.util.Date;
 
 /**
+ * 初始化一些测试数据
  * Initialize the database with some test entries.
  *
  * @author Philip W. Sorst <philip@sorst.net>
  */
-public class DataBaseInitializer
-{
+public class DataBaseInitializer {
     private BlogPostDao blogPostDao;
 
     private UserDao userDao;
 
     private PasswordEncoder passwordEncoder;
 
-    protected DataBaseInitializer()
-    {
+    protected DataBaseInitializer() {
         /* Default constructor for reflection instantiation */
     }
 
-    public DataBaseInitializer(UserDao userDao, BlogPostDao blogPostDao, PasswordEncoder passwordEncoder)
-    {
+    public DataBaseInitializer(UserDao userDao, BlogPostDao blogPostDao, PasswordEncoder passwordEncoder) {
         this.userDao = userDao;
         this.blogPostDao = blogPostDao;
         this.passwordEncoder = passwordEncoder;
     }
 
-    public void initDataBase()
-    {
+    public void initDataBase() {
         User userUser = new User("user", this.passwordEncoder.encode("user"));
         userUser.addRole(Role.USER);
         this.userDao.save(userUser);

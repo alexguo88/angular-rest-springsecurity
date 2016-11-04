@@ -14,8 +14,7 @@ import java.util.Date;
  * @author Philip W. Sorst <philip@sorst.net>
  */
 @javax.persistence.Entity
-public class BlogPost implements Entity
-{
+public class BlogPost implements Entity {
     @Id
     @GeneratedValue
     private Long id;
@@ -26,42 +25,35 @@ public class BlogPost implements Entity
     @Column
     private String content;
 
-    public BlogPost()
-    {
+    public BlogPost() {
         this.date = new Date();
     }
 
     @JsonView(JsonViews.Admin.class)
-    public Long getId()
-    {
+    public Long getId() {
         return this.id;
     }
 
     @JsonView(JsonViews.User.class)
-    public Date getDate()
-    {
+    public Date getDate() {
         return this.date;
     }
 
-    public void setDate(Date date)
-    {
+    public void setDate(Date date) {
         this.date = date;
     }
 
     @JsonView(JsonViews.User.class)
-    public String getContent()
-    {
+    public String getContent() {
         return this.content;
     }
 
-    public void setContent(String content)
-    {
+    public void setContent(String content) {
         this.content = content;
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return String.format("BlogPost[%d, %s]", this.id, this.content);
     }
 }

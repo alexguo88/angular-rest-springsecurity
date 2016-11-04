@@ -6,7 +6,6 @@ import net.dontdrinkandroot.example.angularrestspringsecurity.entity.AccessToken
 /**
  * @author Philip Washington Sorst <philip@sorst.net>
  */
-public interface AccessTokenDao extends Dao<AccessToken, Long>
-{
+public interface AccessTokenDao extends Dao<AccessToken, Long> {
     AccessToken findByToken(String accessTokenString);
 }

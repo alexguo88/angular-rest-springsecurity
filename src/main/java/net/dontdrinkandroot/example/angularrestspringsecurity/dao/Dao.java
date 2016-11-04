@@ -4,8 +4,17 @@ import net.dontdrinkandroot.example.angularrestspringsecurity.entity.Entity;
 
 import java.util.List;
 
-public interface Dao<T extends Entity, I>
-{
+/**
+ *
+ *
+ * @param <T>
+ * @param <I>
+ */
+public interface Dao<T extends Entity, I> {
+    /**
+     *
+     * @return
+     */
     List<T> findAll();
 
     T find(I id);
