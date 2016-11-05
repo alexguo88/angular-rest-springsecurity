@@ -17,11 +17,18 @@ public class JpaAccessTokenDao extends JpaDao<AccessToken, Long> implements Acce
         super(AccessToken.class);
     }
 
+    /**
+     * 按token查找用户
+     *
+     * @param accessTokenString
+     * @return
+     */
     @Override
     @Transactional(readOnly = true, noRollbackFor = NoResultException.class)
     public AccessToken findByToken(String accessTokenString) {
         CriteriaBuilder builder = this.getEntityManager().getCriteriaBuilder();
         CriteriaQuery<AccessToken> query = builder.createQuery(this.entityClass);
+
         Root<AccessToken> root = query.from(this.entityClass);
         query.where(builder.equal(root.get("token"), accessTokenString));
 

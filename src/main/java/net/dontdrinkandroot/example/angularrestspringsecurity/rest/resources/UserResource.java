@@ -33,6 +33,7 @@ public class UserResource {
     private AuthenticationManager authManager;
 
     /**
+     * 取得当前登录用户
      * Retrieves the currently logged in user.
      *
      * @return A transfer containing the username and the roles.
@@ -51,6 +52,7 @@ public class UserResource {
     }
 
     /**
+     * 验证用户并创建access token
      * Authenticates a user and creates an access token.
      *
      * @param username The name of the user.
@@ -73,7 +75,11 @@ public class UserResource {
 
         return this.userService.createAccessToken((User) principal);
     }
-
+    /***************************************************辅助函数**********************/
+    /**
+     * @param userDetails
+     * @return
+     */
     private Map<String, Boolean> createRoleMap(UserDetails userDetails) {
         Map<String, Boolean> roles = new HashMap<String, Boolean>();
         for (GrantedAuthority authority : userDetails.getAuthorities()) {

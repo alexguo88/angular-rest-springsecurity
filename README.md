@@ -6,7 +6,7 @@ angular-rest-springsecurity
 
 An example AngularJS Application that uses a Spring Security protected Jersey REST backend based on Hibernate/JPA.
 
-About
+About[alex]
 -----
 
 The projects aim is to demonstrate the Java implementation of a simple REST interface which is used by an AngularJS application. The following topics are covered:

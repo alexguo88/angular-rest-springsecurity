@@ -33,6 +33,11 @@ public class DaoUserService implements UserService {
         return this.userDao.loadUserByUsername(username);
     }
 
+    /**
+     *
+     * @param accessTokenString
+     * @return
+     */
     @Override
     @Transactional
     public User findUserByAccessToken(String accessTokenString) {

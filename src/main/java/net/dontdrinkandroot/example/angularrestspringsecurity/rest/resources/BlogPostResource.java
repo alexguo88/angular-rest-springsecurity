@@ -30,6 +30,12 @@ public class BlogPostResource {
     @Autowired
     private ObjectMapper mapper;
 
+    /**
+     * list
+     *
+     * @return
+     * @throws IOException
+     */
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public String list() throws IOException {
@@ -46,6 +52,12 @@ public class BlogPostResource {
         return viewWriter.writeValueAsString(allEntries);
     }
 
+    /**
+     * read
+     *
+     * @param id
+     * @return
+     */
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("{id}")
@@ -59,6 +71,12 @@ public class BlogPostResource {
         return blogPost;
     }
 
+    /**
+     * create
+     *
+     * @param blogPost
+     * @return
+     */
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
@@ -86,13 +104,21 @@ public class BlogPostResource {
 
         this.blogPostDao.delete(id);
     }
-
+    /***********************************内部辅助函数******************************/
+    /**
+     * 判断是否管理员
+     *
+     * @return
+     */
     private boolean isAdmin() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Object principal = authentication.getPrincipal();
+
+        //匿名
         if ((principal instanceof String) && ((String) principal).equals("anonymousUser")) {
             return false;
         }
+        //取得当前用户
         UserDetails userDetails = (UserDetails) principal;
 
         return userDetails.getAuthorities().contains(Role.ADMIN);

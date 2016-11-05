@@ -20,6 +20,7 @@
     </listener>
 
     <!--
+    rest 前端
         Map the REST Servlet to /rest/
      -->
     <servlet>

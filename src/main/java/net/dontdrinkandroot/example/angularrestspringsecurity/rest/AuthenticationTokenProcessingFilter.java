@@ -13,6 +13,10 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
+/**
+ *  返回
+ *
+ */
 public class AuthenticationTokenProcessingFilter extends GenericFilterBean {
     private final UserService userService;
 
@@ -38,6 +42,11 @@ public class AuthenticationTokenProcessingFilter extends GenericFilterBean {
         chain.doFilter(request, response);
     }
 
+    /**
+     *
+     * @param request
+     * @return
+     */
     private HttpServletRequest getAsHttpRequest(ServletRequest request) {
         if (!(request instanceof HttpServletRequest)) {
             throw new RuntimeException("Expecting an HTTP request");
@@ -46,6 +55,12 @@ public class AuthenticationTokenProcessingFilter extends GenericFilterBean {
         return (HttpServletRequest) request;
     }
 
+    /**
+     * 取得access Token
+     *
+     * @param httpRequest
+     * @return
+     */
     private String extractAuthTokenFromRequest(HttpServletRequest httpRequest) {
         /* Get token from header */
         String authToken = httpRequest.getHeader("X-Access-Token");
